@@ -46,10 +46,19 @@
             {
                 throw new ArgumentNullException("DateTime is required");
             }
-            if (Date < new DateTime(2020, 1, 1) || Date > DateTime.Now)
+
+            if (Date.Value > DateTime.Now)
             {
-                throw new ArgumentOutOfRangeException("DateTime must be between 01-01-2020 and now");
+                throw new ArgumentOutOfRangeException("DateTime cannot be in the future");
             }
+
+            if (Date.Value.Year < 2020 || Date.Value.Year > 2024)
+            {
+                throw new ArgumentOutOfRangeException("DateTime must be between 2020 and 2024");
+            }
+
+            
+
         }
 
         public void Validate()
