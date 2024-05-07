@@ -1,0 +1,6 @@
+@HeatWave_HostAddress = http://localhost:5248
+
+GET {{HeatWave_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
