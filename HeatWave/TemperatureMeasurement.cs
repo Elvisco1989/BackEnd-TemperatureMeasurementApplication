@@ -12,8 +12,9 @@
 
         public override string ToString()
         {
-            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", DateTime: " + DateTime.ToString("MM-dd-yyyy HH:mm:ss");
+            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("dd-MM-yyyy HH:mm:ss") : "N/A");
         }
+
 
         public void ValidateInDoorTemperature()
         {
