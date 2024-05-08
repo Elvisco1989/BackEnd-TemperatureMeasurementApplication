@@ -12,57 +12,78 @@ namespace HeatWave.Tests
     public class TempRepoTests
     {
         TempRepo _Templist = new TempRepo();
-        TemperatureMeasurement tM = new TemperatureMeasurement { Id = 6, InDoorTemperature = 17, OutDoorTemperature = 23, Date = new DateTime(2022, 6, 11, 10, 39, 12) };
-
+        TemperatureMeasurement tMTest = new TemperatureMeasurement { Id = 6, InDoorTemperature = 17, OutDoorTemperature = 23, Date = new DateTime(2022, 6, 11, 10, 39, 12) };
 
         [TestMethod()]
         public void GetTempListTest()
         {
             var TempMeasurement = _Templist.GetTempList();
-            Assert.AreEqual(5, TempMeasurement.Count);
+            Assert.AreEqual(5, TempMeasurement.Count());
+
+            var TempMeasurementDate = _Templist.GetTempList(orderby: "Date");
+            Assert.AreEqual(5, TempMeasurementDate.Count());
+            Assert.AreEqual(TempMeasurementDate.First().Date, DateTime.Parse("10-05-2021 08:38:16"));
+
 
 
         }
 
-        public void GetId()
+        [TestMethod()]
+        public void GetIdTest()
         {
-            TemperatureMeasurement? tM = _Templist.GetTempID(1);
+            TemperatureMeasurement? tM = _Templist.GetID(1);
             Assert.IsNotNull(tM);
             Assert.AreEqual(1, tM.Id);
-            Assert.IsNull(_Templist.GetTempID(100));
+            Assert.IsNull(_Templist.GetID(100));
 
 
         }
 
-        public void AddTempMeasurementTest()
+        [TestMethod()]
+        public void AddTest()
         {
-            _Templist.AddTempMeasurement(tM);
-            Assert.AreEqual(6, _Templist.GetTempList().Count);
-            Assert.AreEqual(6, _Templist.GetTempID(6).Id);
-        }
+            _Templist.Add(tMTest);
+            IEnumerable<TemperatureMeasurement> TempMeasurement = _Templist.GetTempList();
+            Assert.AreEqual(6, TempMeasurement.Count());
+            Assert.IsNotNull(_Templist.GetID(6));
 
-        public void RemoveTempMeasurementTest()
-        {
-            _Templist.RemoveTempMeasurement(5);
-            Assert.AreEqual(4, _Templist.GetTempList().Count);
-            Assert.IsNull(_Templist.GetTempID(5));
 
         }
 
-        public void UpdateTempMeasurementTest()
+        [TestMethod()]
+        public void RemoveTest()
         {
-            _Templist.UpdateTempMeasurement(1, tM);
-            Assert.IsNotNull(_Templist.GetTempID(1));
-            Assert.AreEqual(17.0, _Templist.GetTempID(1).InDoorTemperature);
-            Assert.AreEqual(23.0, _Templist.GetTempID(1).OutDoorTemperature);
-            Assert.AreEqual(new DateTime(2022, 6, 11, 10, 39, 12), _Templist.GetTempID(1).Date);
+            _Templist.Remove(5);
+            IEnumerable<TemperatureMeasurement> TempMeasurement = _Templist.GetTempList();
+            Assert.AreEqual(4, TempMeasurement.Count());
+            Assert.IsNull(_Templist.GetID(5));
+
 
         }
 
-        public override string ToString()
+        [TestMethod()]
+        public void UpdateTest()
         {
-            _Templist.GetTempList();
-            Assert.AreEqual("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: 10-05-2021 08:38:16", _Templist.ToString());
+            //_Templist.Update(1, tM);
+            //Assert.IsNotNull(_Templist.GetID(1));
+            //Assert.AreEqual(17.0, _Templist.GetID(1).InDoorTemperature);
+            //Assert.AreEqual(23.0, _Templist.GetID(1).OutDoorTemperature);
+            //Assert.AreEqual(new DateTime(2022, 6, 11, 10, 39, 12), _Templist.GetID(1).Date);
+
+            TemperatureMeasurement? tM = _Templist.Update(1, tMTest);
+            Assert.IsNotNull(tM);
+            Assert.AreEqual(1, tM.Id);
+            Assert.AreEqual(17, tM.InDoorTemperature);
+            Assert.AreEqual(23, tM.OutDoorTemperature);
+            Assert.AreEqual(new DateTime(2022, 6, 11, 10, 39, 12), tM.Date);
+
+        }
+
+        [TestMethod()]
+        public void ToStringTest()
+        {
+            IEnumerable<TemperatureMeasurement> TempMeasurement = _Templist.GetTempList();
+            Assert.AreEqual("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: 10-05-2021 08:38:16", TempMeasurement.ElementAt(0).ToString());
         }
 
 

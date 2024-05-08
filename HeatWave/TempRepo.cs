@@ -2,7 +2,7 @@
 {
     public class TempRepo
     {
-        private int _nextId;
+        private int _nextId = 6;
         private List<TemperatureMeasurement> _TempList = new List<TemperatureMeasurement>
         {
             new TemperatureMeasurement { Id = 1, InDoorTemperature = 20, OutDoorTemperature = 25, Date = new DateTime(2021, 5, 10, 8, 38, 16) },
