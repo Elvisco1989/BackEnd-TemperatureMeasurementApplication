@@ -98,7 +98,7 @@
 
         public override string ToString()
         {
-            return string.Join("\n ", _TempList);
+            return string.Join(",", _TempList);
         }
     }
 }
