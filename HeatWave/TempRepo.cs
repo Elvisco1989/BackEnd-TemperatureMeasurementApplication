@@ -9,7 +9,7 @@
             new TemperatureMeasurement { Id = 2, InDoorTemperature = 21, OutDoorTemperature = 26, Date = new DateTime(2021, 5, 11, 8, 38, 16) },
             new TemperatureMeasurement { Id = 3, InDoorTemperature = 22, OutDoorTemperature = 27, Date = new DateTime(2021, 5, 12, 8, 38, 16) },
             new TemperatureMeasurement { Id = 4, InDoorTemperature = 23, OutDoorTemperature = 28, Date = new DateTime(2021, 5, 13, 8, 38, 16) },
-            new TemperatureMeasurement { Id = 5, InDoorTemperature = 24, OutDoorTemperature = 29, Date = new DateTime(2021, 5, 14, 8, 38, 16) }
+            new TemperatureMeasurement { Id = 5, InDoorTemperature = 10, OutDoorTemperature = -10, Date = new DateTime(2022, 1, 5, 2, 12, 11) }
         };
 
         public IEnumerable<TemperatureMeasurement> GetTempList(DateTime? date = null, string? orderby = null)
