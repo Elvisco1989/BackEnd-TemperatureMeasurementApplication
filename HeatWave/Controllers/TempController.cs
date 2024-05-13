@@ -17,9 +17,10 @@ namespace HeatWave.Controllers
 
         // GET: api/<TempController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<TemperatureMeasurement>> Get([FromQuery] DateTime? date=null, [FromQuery] string? orderBy=null ) 
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<TemperatureMeasurement>measurements = _tempRepository.GetTempList(date, orderBy);
+           
         }
 
         // GET api/<TempController>/5
