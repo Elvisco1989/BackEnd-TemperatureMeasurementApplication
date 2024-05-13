@@ -17,10 +17,18 @@ namespace HeatWave.Controllers
 
         // GET: api/<TempController>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<IEnumerable<TemperatureMeasurement>> Get([FromQuery] DateTime? date=null, [FromQuery] string? orderBy=null ) 
         {
             IEnumerable<TemperatureMeasurement>measurements = _tempRepository.GetTempList(date, orderBy);
-           
+            if (measurements.Count() == 0)
+            {
+                return NoContent();
+            }
+            return Ok(measurements);
+
         }
 
         // GET api/<TempController>/5
@@ -32,8 +40,23 @@ namespace HeatWave.Controllers
 
         // POST api/<TempController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<TemperatureMeasurement> Post([FromBody] TemperatureMeasurement measurement)
         {
+            try
+            {
+                measurement.ValidateInDoorTemperature();
+                measurement.ValidateOutDoorTemperature();
+                measurement.ValidateDateTime();
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            _tempRepository.Add(measurement);
+            return CreatedAtAction(nameof(Get), new { id = measurement.Id }, measurement);
+
         }
 
         // PUT api/<TempController>/5
