@@ -26,11 +26,11 @@ namespace HeatWave.Tests
 
             var TempMeasurementInDoorTemperature = _Templist.GetTempList(orderby: "InDoorTemperature");
             Assert.AreEqual(5, TempMeasurementInDoorTemperature.Count());
-            Assert.AreEqual(TempMeasurementInDoorTemperature.First().InDoorTemperature, 20);
+            Assert.AreEqual(TempMeasurementInDoorTemperature.First().InDoorTemperature, 10);
 
             var TempMeasurementOutDoorTemperature = _Templist.GetTempList(orderby: "OutDoorTemperature");
             Assert.AreEqual(5, TempMeasurementOutDoorTemperature.Count());
-            Assert.AreEqual(TempMeasurementOutDoorTemperature.First().OutDoorTemperature, 25);
+            Assert.AreEqual(TempMeasurementOutDoorTemperature.First().OutDoorTemperature, -10);
 
             var TempMeasurementId = _Templist.GetTempList(orderby: "Id");
             Assert.AreEqual(5, TempMeasurementId.Count());
@@ -38,15 +38,15 @@ namespace HeatWave.Tests
 
             var TempMeasurementInDoorTemperatureDesc = _Templist.GetTempList(orderby: "InDoorTemperatureDesc");
             Assert.AreEqual(5, TempMeasurementInDoorTemperatureDesc.Count());
-            Assert.AreEqual(TempMeasurementInDoorTemperatureDesc.First().InDoorTemperature, 24);
+            Assert.AreEqual(TempMeasurementInDoorTemperatureDesc.First().InDoorTemperature, 23);
 
             var TempMeasurementOutDoorTemperatureDesc = _Templist.GetTempList(orderby: "OutDoorTemperatureDesc");
             Assert.AreEqual(5, TempMeasurementOutDoorTemperatureDesc.Count());
-            Assert.AreEqual(TempMeasurementOutDoorTemperatureDesc.First().OutDoorTemperature, 29);
+            Assert.AreEqual(TempMeasurementOutDoorTemperatureDesc.First().OutDoorTemperature, 28);
 
             var TempMeasurementDateDesc = _Templist.GetTempList(orderby: "DateDesc");
             Assert.AreEqual(5, TempMeasurementDateDesc.Count());
-            Assert.AreEqual(TempMeasurementDateDesc.First().Date, DateTime.Parse("14-05-2021 08:38:16"));
+            Assert.AreEqual(TempMeasurementDateDesc.First().Date, DateTime.Parse("05-01-2022 02:12:11"));
 
             var TempMeasurementIdDesc = _Templist.GetTempList(orderby: "IdDesc");
             Assert.AreEqual(5, TempMeasurementIdDesc.Count());
