@@ -67,6 +67,7 @@ namespace HeatWave.Controllers
 
         // DELETE api/<TempController>/5
         [HttpDelete("{id}")]
+        
         public void Delete(int id)
         {
         }
