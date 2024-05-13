@@ -33,9 +33,16 @@ namespace HeatWave.Controllers
 
         // GET api/<TempController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<TemperatureMeasurement> Get(int id)
         {
-            return "value";
+            TemperatureMeasurement? measurement = _tempRepository.GetID(id);
+            if (measurement == null)
+            {
+                return NotFound();
+            }
+            return Ok(measurement);
         }
 
         // POST api/<TempController>
@@ -61,14 +68,44 @@ namespace HeatWave.Controllers
 
         // PUT api/<TempController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        public ActionResult<TemperatureMeasurement> Put(int id, [FromBody] TemperatureMeasurement measurement)
         {
+            try
+            {
+                measurement.ValidateInDoorTemperature();
+                measurement.ValidateOutDoorTemperature();
+                measurement.ValidateDateTime();
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            TemperatureMeasurement? updatedMeasurement = _tempRepository.Update(id, measurement);
+            if (updatedMeasurement == null)
+            {
+                return NotFound();
+            }
+            return Ok(updatedMeasurement);
+
         }
 
         // DELETE api/<TempController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public ActionResult<TemperatureMeasurement?> Delete(int id) 
         {
+            TemperatureMeasurement? measurement = _tempRepository.Remove(id);
+            if (measurement == null)
+            {
+                return NotFound();
+            }
+            return Ok(measurement);
+
         }
     }
 }
