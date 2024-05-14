@@ -13,9 +13,10 @@
 
         public override string ToString()
         {
-            // Returnerer en sammensat streng, der inkluderer værdierne for Id, InDoorTemperature, OutDoorTemperature og formateret dato
-            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("yyyy-MM-dd HH:mm") : "N/A");
+            // Return a concatenated string including values for Id, InDoorTemperature, OutDoorTemperature, and formatted date
+            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("yyyy-MM-dd,HH:mm") : "N/A");
         }
+
 
 
 
