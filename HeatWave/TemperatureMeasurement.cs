@@ -5,15 +5,19 @@
     {
         public int Id { get; set; }
 
-        public int? InDoorTemperature { get; set; }
-        public int? OutDoorTemperature { get; set; }
+        public double? InDoorTemperature { get; set; }
+        public double? OutDoorTemperature { get; set; }
 
         public DateTime? Date { get; set; }
 
+
         public override string ToString()
         {
-            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("dd-MM-yyyy HH:mm:ss") : "N/A");
+            // Returnerer en sammensat streng, der inkluderer værdierne for Id, InDoorTemperature, OutDoorTemperature og formateret dato
+            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("yyyy-MM-dd HH:mm") : "N/A");
         }
+
+        // Egenskab til at returnere en formateret streng uden sekunder
 
 
         public void ValidateInDoorTemperature()
