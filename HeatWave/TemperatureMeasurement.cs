@@ -17,7 +17,6 @@
             return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("yyyy-MM-dd HH:mm") : "N/A");
         }
 
-        // Egenskab til at returnere en formateret streng uden sekunder
 
 
         public void ValidateInDoorTemperature()
