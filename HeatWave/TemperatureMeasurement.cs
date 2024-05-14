@@ -53,7 +53,7 @@ namespace HeatWave
                 throw new ArgumentNullException("DateTime is required");
             }
 
-            if (Date.Value > DateTime.Now)
+            if (Date.Value > DateTime.Now.AddMinutes(5))
             {
                 throw new ArgumentOutOfRangeException("DateTime cannot be in the future");
             }
