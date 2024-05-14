@@ -16,7 +16,7 @@ namespace HeatWave
         public override string ToString()
         {
             // Return a concatenated string including values for Id, InDoorTemperature, OutDoorTemperature, and formatted date
-            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("G") : "N/A");
+            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("g") : "N/A");
         }
 
 
