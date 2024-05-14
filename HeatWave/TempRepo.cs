@@ -41,7 +41,6 @@
                         break;
                     case "OutDoorTemperatureDesc":
                         result = result.OrderByDescending(tM => tM.OutDoorTemperature);
-
                         break;
                     case "DateDesc":
                         result = result.OrderByDescending(tM => tM.Date);
@@ -49,8 +48,6 @@
                     case "IdDesc":
                         result = result.OrderByDescending(tM => tM.Id);
                         break;
-                    default:
-                        throw new ArgumentOutOfRangeException("orderby", "Invalid value");
                 }
             }
             return result;
