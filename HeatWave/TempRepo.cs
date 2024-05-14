@@ -50,7 +50,7 @@
                         result = result.OrderByDescending(tM => tM.Id);
                         break;
                     default:
-                        break;
+                        throw new ArgumentOutOfRangeException("orderby", "Invalid value");
                 }
             }
             return result;
