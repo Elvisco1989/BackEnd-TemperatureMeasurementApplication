@@ -1,4 +1,6 @@
-﻿namespace HeatWave
+﻿using Microsoft.VisualBasic;
+
+namespace HeatWave
 
 {
     public class TemperatureMeasurement
@@ -14,11 +16,11 @@
         public override string ToString()
         {
             // Return a concatenated string including values for Id, InDoorTemperature, OutDoorTemperature, and formatted date
-            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("yyyy-MM-dd,HH:mm") : "N/A");
+            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("G") : "N/A");
         }
 
 
-
+            
 
         public void ValidateInDoorTemperature()
         {
