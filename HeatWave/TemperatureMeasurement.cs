@@ -16,7 +16,7 @@ namespace HeatWave
         public override string ToString()
         {
             // Return a concatenated string including values for Id, InDoorTemperature, OutDoorTemperature, and formatted date
-            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("g") : "N/A");
+            return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "N/A");
         }
 
 
@@ -53,10 +53,10 @@ namespace HeatWave
                 throw new ArgumentNullException("DateTime is required");
             }
 
-            if (Date.Value > DateTime.Now)
-            {
-                throw new ArgumentOutOfRangeException("DateTime cannot be in the future");
-            }
+            //if (Date.Value > DateTime.Now)
+            //{
+            //    throw new ArgumentOutOfRangeException("DateTime cannot be in the future");
+            //}
 
             if (Date.Value.Year < 2020 || Date.Value.Year > 2024)
             {
