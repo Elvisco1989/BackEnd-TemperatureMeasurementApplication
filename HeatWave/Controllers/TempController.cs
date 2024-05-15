@@ -22,12 +22,21 @@ namespace HeatWave.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<IEnumerable<TemperatureMeasurement>> Get([FromQuery] DateTime? date=null, [FromQuery] string? orderBy=null ) 
         {
-            IEnumerable<TemperatureMeasurement>measurements = _tempRepository.GetTempList(date, orderBy);
-            if (measurements.Count() == 0)
+            try
             {
-                return NoContent();
+
+
+                IEnumerable<TemperatureMeasurement> measurements = _tempRepository.GetTempList(date, orderBy);
+                if (measurements.Count() == 0)
+                {
+                    return NoContent();
+                }
+                return Ok(measurements);
             }
-            return Ok(measurements);
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,"An error occured while processing your request"+ex.Message);
+            }
 
         }
 
