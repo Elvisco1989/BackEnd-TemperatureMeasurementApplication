@@ -1,4 +1,6 @@
-﻿namespace HeatWave
+﻿using Microsoft.VisualBasic;
+
+namespace HeatWave
 {
     public class TempRepo
     {
@@ -17,7 +19,11 @@
             IEnumerable<TemperatureMeasurement> result = new List<TemperatureMeasurement>(_TempList);
             if (date != null)
             {
-                result = result.Where(tM => tM.Date == date.Value.Date);
+                // result = result.Where(tM => tM.Date == date.Value.Date);
+                {
+                    result = result.Where(tM => tM.Date.HasValue && tM.Date.Value == date.Value);
+                }
+
             }
 
             if (orderby != null)
