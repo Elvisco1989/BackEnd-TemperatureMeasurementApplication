@@ -53,11 +53,6 @@ namespace HeatWave
                 throw new ArgumentNullException("DateTime is required");
             }
 
-            if (Date.Value > DateTime.Now.AddMinutes(5))
-            {
-                throw new ArgumentOutOfRangeException("DateTime cannot be in the future");
-            }
-
             if (Date.Value.Year < 2020 || Date.Value.Year > 2024)
             {
                 throw new ArgumentOutOfRangeException("DateTime must be between 2020 and 2024");
