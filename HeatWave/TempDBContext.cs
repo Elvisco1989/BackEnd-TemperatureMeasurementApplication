@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Data.Entity;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace HeatWave
 {
@@ -9,6 +11,6 @@ namespace HeatWave
         {
         }
 
-        public DbSet<TemperatureMeasurement> TemperatureMeasurements { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<TemperatureMeasurement> TemperatureMeasurements { get; set; }
     }
 }
