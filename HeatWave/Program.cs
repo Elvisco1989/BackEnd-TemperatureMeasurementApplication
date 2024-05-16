@@ -1,4 +1,5 @@
 using HeatWave;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,11 @@ builder.Services.AddSingleton<TempRepo>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<TempDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringSimply"));
+});
 
 var app = builder.Build();
 

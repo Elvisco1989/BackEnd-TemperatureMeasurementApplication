@@ -9,6 +9,7 @@ namespace HeatWave
     {
         public TempDBContext(DbContextOptions options) : base(options)
         {
+            
         }
 
         public Microsoft.EntityFrameworkCore.DbSet<TemperatureMeasurement> TemperatureMeasurements { get; set; }

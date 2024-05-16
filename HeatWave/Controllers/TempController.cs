@@ -8,9 +8,9 @@ namespace HeatWave.Controllers
     [ApiController]
     public class TempController : ControllerBase
     {
-        private TempRepo _tempRepository;
+        private TempRepoDB _tempRepository;
 
-        public TempController(TempRepo tempRepository)
+        public TempController(TempRepoDB tempRepository)
         {
             _tempRepository = tempRepository;
         }
