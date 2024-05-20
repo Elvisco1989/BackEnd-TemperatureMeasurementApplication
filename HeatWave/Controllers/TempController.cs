@@ -108,7 +108,7 @@ namespace HeatWave.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public ActionResult<TemperatureMeasurement?> Delete(int id) 
         {
-            TemperatureMeasurement? measurement = _tempRepository.Remove(id);
+            TemperatureMeasurement? measurement = _tempRepository.Delete(id);
             if (measurement == null)
             {
                 return NotFound();
