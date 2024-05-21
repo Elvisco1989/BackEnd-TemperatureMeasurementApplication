@@ -1,4 +1,6 @@
-﻿namespace HeatWave
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace HeatWave
 {
     public class TempRepoDB
     {

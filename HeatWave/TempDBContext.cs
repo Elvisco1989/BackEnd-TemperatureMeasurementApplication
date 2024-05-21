@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Data.Entity;
-using DbContext = Microsoft.EntityFrameworkCore.DbContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeatWave
 {
-    public class TempDBContext : DbContext
+    public class TempDBContext : Microsoft.EntityFrameworkCore.DbContext
     {
-        public TempDBContext(DbContextOptions options) : base(options)
+        public TempDBContext(DbContextOptions<TempDBContext> options) : base(options)
         {
             
         }

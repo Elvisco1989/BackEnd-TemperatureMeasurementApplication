@@ -17,14 +17,16 @@ builder.Services.AddCors(option =>
 });
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton<TempRepo>();
+//builder.Services.AddSingleton<TempRepo>();
+builder.Services.AddScoped<TempRepoDB>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<TempDBContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringSimply"));
+    options.UseSqlServer(DBSecret.ConnectionStringSimply);
 });
 
 var app = builder.Build();
