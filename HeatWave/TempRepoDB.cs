@@ -14,7 +14,7 @@ namespace HeatWave
 
         public IEnumerable<TemperatureMeasurement> GetTempList(DateTime? date = null, string? orderBy = null)
         {
-            IEnumerable<TemperatureMeasurement> result = new List<TemperatureMeasurement>(_context.TemperatureMeasurements);
+            IEnumerable<TemperatureMeasurement> result = new List<TemperatureMeasurement>(_context.TemperatureMeasurement);
             if (date != null)
             {
                 result = result.Where(tM => tM.Date.HasValue && tM.Date.Value == date.Value);
@@ -55,13 +55,13 @@ namespace HeatWave
 
         public TemperatureMeasurement? GetID(int id)
         {
-            return _context.TemperatureMeasurements.FirstOrDefault(tM => tM.Id == id);
+            return _context.TemperatureMeasurement.FirstOrDefault(tM => tM.Id == id);
         }
 
         public TemperatureMeasurement Add(TemperatureMeasurement tM)
         {
             tM.Validate();
-            _context.TemperatureMeasurements.Add(tM);
+            _context.TemperatureMeasurement.Add(tM);
             _context.SaveChanges();
             return tM;
         }
@@ -73,7 +73,7 @@ namespace HeatWave
             {
                 return null;
             }
-            _context.TemperatureMeasurements.Remove(tM);
+            _context.TemperatureMeasurement.Remove(tM);
             _context.SaveChanges();
             return tM;
         }

@@ -12,6 +12,6 @@ namespace HeatWave
             
         }
 
-        public Microsoft.EntityFrameworkCore.DbSet<TemperatureMeasurement> TemperatureMeasurements { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<TemperatureMeasurement> TemperatureMeasurement { get; set; }
     }
 }
