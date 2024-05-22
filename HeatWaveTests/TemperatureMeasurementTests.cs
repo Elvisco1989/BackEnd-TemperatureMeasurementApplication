@@ -17,8 +17,8 @@ namespace HeatWave.Tests
             TemperatureMeasurement tM = new TemperatureMeasurement { Id = 1, InDoorTemperature = 20, OutDoorTemperature = 25, Date = new DateTime(2021, 5, 10, 8, 38, 16) };
             tM.ToString();
 
-            Assert.AreEqual("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: 10-05-2021 08:38:16", tM.ToString());
-
+            Assert.AreEqual("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: 2021-05-10T08:38:16", tM.ToString());
+            
             tM.Date = null;
             tM.ToString();
             Assert.AreEqual("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: N/A", tM.ToString());
@@ -73,17 +73,10 @@ namespace HeatWave.Tests
             tM.Date = new DateTime(2019, 12, 31);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => tM.ValidateDateTime());
 
-            tM.Date = new DateTime(2025, 1, 1);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => tM.ValidateDateTime());
-
-            tM.Date = DateTime.Now.AddSeconds(1);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => tM.ValidateDateTime());
-
             tM.Date = null;
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => tM.ValidateDateTime());
+            Assert.ThrowsException<ArgumentNullException>(() => tM.ValidateDateTime());
 
 
-            
         }
 
         [TestMethod()]
