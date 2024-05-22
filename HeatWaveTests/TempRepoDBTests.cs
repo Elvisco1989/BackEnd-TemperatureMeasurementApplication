@@ -117,5 +117,7 @@ namespace HeatWave.Tests
             Assert.IsTrue(result.First().InDoorTemperature == 13);
             Assert.IsTrue(result.First().OutDoorTemperature == 14);
         }
+
+
     }
 }
