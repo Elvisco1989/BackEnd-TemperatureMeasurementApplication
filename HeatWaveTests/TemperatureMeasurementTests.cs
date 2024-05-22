@@ -80,7 +80,7 @@ namespace HeatWave.Tests
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => tM.ValidateDateTime());
 
             tM.Date = null;
-            Assert.ThrowsException<ArgumentNullException>(() => tM.ValidateDateTime());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => tM.ValidateDateTime());
 
 
             

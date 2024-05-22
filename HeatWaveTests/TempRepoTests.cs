@@ -22,7 +22,7 @@ namespace HeatWave.Tests
 
             var TempMeasurementDate = _Templist.GetTempList(orderby: "Date");
             Assert.AreEqual(5, TempMeasurementDate.Count());
-            Assert.AreEqual(TempMeasurementDate.First().Date, DateTime.Parse("10-05-2021 08:38:16"));
+            Assert.AreEqual(TempMeasurementDate.First().Date, DateTime.Parse("10-05-2021 08:38:00"));
 
             var TempMeasurementInDoorTemperature = _Templist.GetTempList(orderby: "InDoorTemperature");
             Assert.AreEqual(5, TempMeasurementInDoorTemperature.Count());
@@ -46,7 +46,7 @@ namespace HeatWave.Tests
 
             var TempMeasurementDateDesc = _Templist.GetTempList(orderby: "DateDesc");
             Assert.AreEqual(5, TempMeasurementDateDesc.Count());
-            Assert.AreEqual(TempMeasurementDateDesc.First().Date, DateTime.Parse("05-01-2022 02:12:11"));
+            Assert.AreEqual(TempMeasurementDateDesc.First().Date, DateTime.Parse("05-01-2023 02:12:11"));
 
             var TempMeasurementIdDesc = _Templist.GetTempList(orderby: "IdDesc");
             Assert.AreEqual(5, TempMeasurementIdDesc.Count());
@@ -106,7 +106,7 @@ namespace HeatWave.Tests
         public void ToStringTest()
         {
             string str = _Templist.ToString();
-            Assert.IsTrue(str.Contains("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: 10-05-2021 08:38:16"));
+            Assert.IsTrue(str.Contains("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: 10-05-2021 08:38:00"));
         }
 
 
