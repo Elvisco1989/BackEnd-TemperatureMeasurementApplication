@@ -106,7 +106,7 @@ namespace HeatWave.Tests
         public void ToStringTest()
         {
             string str = _Templist.ToString();
-            Assert.IsTrue(str.Contains("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: 10-05-2021 08:38:00"));
+            Assert.IsTrue(str.Contains("Id: 1, InDoorTemperature: 20, OutDoorTemperature: 25, Date: 2021-05-10T08:38:00"));
         }
 
 
