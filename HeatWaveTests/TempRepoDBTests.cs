@@ -56,7 +56,14 @@ namespace HeatWave.Tests
         [TestMethod()]
         public void AddTest()
         {
-            Assert.Fail();
+            TemperatureMeasurement temperatureMeasurementMinus = new TemperatureMeasurement { Date = new DateTime(2021, 5, 10, 8, 38, 0), InDoorTemperature = -17, OutDoorTemperature = -17 };
+            _repoDB.Add(temperatureMeasurementMinus);
+            Assert.IsTrue(temperatureMeasurementMinus.InDoorTemperature < 0);
+            Assert.IsTrue(temperatureMeasurementMinus.OutDoorTemperature < 0);
+            Assert.IsTrue(temperatureMeasurementMinus.Id > 0);
+            IEnumerable<TemperatureMeasurement> result = _repoDB.GetTempList();
+            Assert.IsTrue(result.Count() == 1);
+
         }
 
         [TestMethod()]
