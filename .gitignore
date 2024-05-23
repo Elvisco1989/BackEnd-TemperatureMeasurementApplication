@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 DBSecret.cs
+/HeatWave/DBSecret.cs
