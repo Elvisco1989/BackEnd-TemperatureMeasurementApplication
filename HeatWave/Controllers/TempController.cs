@@ -24,17 +24,20 @@ namespace HeatWave.Controllers
         {
             try
             {
-
-
+                //Hent målinger fra repository
                 IEnumerable<TemperatureMeasurement> measurements = _tempRepository.GetTempList(date, orderBy);
                 if (measurements.Count() == 0)
                 {
+                    //Hvis der ikke er nogen målinger, returner "No Content" statuskode
                     return NoContent();
                 }
+
+                //Returnerer målinger
                 return Ok(measurements);
             }
             catch (Exception ex)
             {
+                //Hvis der opstår en fejl, returner "Internal Server Error" statuskode med fejlbesked
                 return StatusCode(StatusCodes.Status500InternalServerError,"An error occured while processing your request"+ex.Message);
             }
 
@@ -46,11 +49,14 @@ namespace HeatWave.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<TemperatureMeasurement> Get(int id)
         {
+            //Hent måling ved givet id fra repository
             TemperatureMeasurement? measurement = _tempRepository.GetID(id);
             if (measurement == null)
             {
+                //Hvis målingen ikke findes, returneres en "Not Found" statuskode
                 return NotFound();
             }
+            //Returnerer måling
             return Ok(measurement);
         }
 
@@ -62,15 +68,21 @@ namespace HeatWave.Controllers
         {
             try
             {
+                //Valider målings indendørs temperatur, udendørs temperatur og dato
                 measurement.ValidateInDoorTemperature();
                 measurement.ValidateOutDoorTemperature();
                 measurement.ValidateDateTime();
             }
             catch (System.Exception ex)
             {
+                //Hvis der opstår en fejl, returneres en "Bad Request" med fejlbesked
                 return BadRequest(ex.Message);
             }
+
+            //Tilføj måling til repository
             _tempRepository.Add(measurement);
+
+            //Returnerer en "Created" statuskode med den nye measurement
             return CreatedAtAction(nameof(Get), new { id = measurement.Id }, measurement);
 
         }
@@ -85,19 +97,26 @@ namespace HeatWave.Controllers
         {
             try
             {
+                //Valider målings indendørs temperatur, udendørs temperatur og dato
                 measurement.ValidateInDoorTemperature();
                 measurement.ValidateOutDoorTemperature();
                 measurement.ValidateDateTime();
             }
             catch (System.Exception ex)
             {
+                //Hvis der opstår en fejl, returneres en "Bad Request" med fejlbesked
                 return BadRequest(ex.Message);
             }
+
+            //Opdater måling ved givet id fra repository
             TemperatureMeasurement? updatedMeasurement = _tempRepository.Update(id, measurement);
             if (updatedMeasurement == null)
             {
+                //Hvis målingen ikke findes, returneres en 404
                 return NotFound();
             }
+
+            //returner den opdaterede measurement
             return Ok(updatedMeasurement);
 
         }
@@ -108,11 +127,15 @@ namespace HeatWave.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public ActionResult<TemperatureMeasurement?> Delete(int id) 
         {
+            //Slet måling ved givet id fra repository
             TemperatureMeasurement? measurement = _tempRepository.Delete(id);
             if (measurement == null)
             {
+                //Hvis målingen ikke findes, returneres en 404
                 return NotFound();
             }
+
+            //Returner den slettede measurement
             return Ok(measurement);
 
         }
