@@ -19,9 +19,7 @@ namespace HeatWave
             return "Id: " + Id + ", InDoorTemperature: " + InDoorTemperature + ", OutDoorTemperature: " + OutDoorTemperature + ", Date: " + (Date.HasValue ? Date.Value.ToString("yyyy-MM-ddTHH:mm:ss") : "N/A");
         }
 
-
-            
-
+        // Validate InDoorTemperature property
         public void ValidateInDoorTemperature()
         {
             if (InDoorTemperature == null)
@@ -34,6 +32,7 @@ namespace HeatWave
             }
         }
 
+        // Validate OutDoorTemperature property
         public void ValidateOutDoorTemperature()
         {
             if (OutDoorTemperature == null)
@@ -46,6 +45,7 @@ namespace HeatWave
             }
         }
 
+        // Validate DateTime property
         public void ValidateDateTime()
         {
             if (Date == null)
@@ -57,17 +57,14 @@ namespace HeatWave
             {
                 throw new ArgumentOutOfRangeException("DateTime must be between 2020 and 2024");
             }
-
-            
-
         }
 
+        // Validate InDoorTemperature, OutDoorTemperature og Date properties
         public void Validate()
         {
             ValidateInDoorTemperature();
             ValidateOutDoorTemperature();
             ValidateDateTime();
-
         }
     }
 }
